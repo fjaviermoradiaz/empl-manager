@@ -17,6 +17,9 @@ public class Employee {
     //private String surname2;
     private String email;
 
+    public Employee(){
+    }
+
     public Employee(String name, String email) {
         this.name = name;
         this.email = email;
