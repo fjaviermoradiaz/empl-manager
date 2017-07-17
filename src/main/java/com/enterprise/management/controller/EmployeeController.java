@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,6 +44,7 @@ public class EmployeeController {
         return ResponseEntity.ok(resource);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(method = RequestMethod.GET, path="/all", produces = "application/json")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = Employee.class),
