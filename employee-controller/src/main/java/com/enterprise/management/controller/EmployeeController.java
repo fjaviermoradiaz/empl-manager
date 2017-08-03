@@ -1,6 +1,7 @@
 package com.enterprise.management.controller;
 
-import com.enterprise.management.repository.EmployeeRepository;
+import com.enterprise.management.persistence.entity.Employee;
+import com.enterprise.management.service.EmployeeService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import java.util.List;
 public class EmployeeController {
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private EmployeeService employeeService;
 
     //TODO: Pendiente de implementar HATEOAS y usar Swagger para las pruebas
     //TODO: Cambiar GetMapping por RequestMapping
@@ -36,7 +37,7 @@ public class EmployeeController {
         ResponseEntity<?> addEmployee (@RequestParam String name, @RequestParam String email) {
 
         Employee employee = new Employee(name,email);
-        employee = employeeRepository.save(employee);
+      //  employee = employeeService.save(employee);
         Resource resource = new Resource<>(employee);
         resource.add(ControllerLinkBuilder.linkTo(ControllerLinkBuilder.methodOn(EmployeeController.class).addEmployee(name,email)).withSelfRel());
         return ResponseEntity.ok(resource);
@@ -52,7 +53,7 @@ public class EmployeeController {
             @ApiResponse(code = 500, message = "Failure")})
     public @ResponseBody
     ResponseEntity<?> getAllEmployees() {
-        List<Employee> currentAgreemnts = (List<Employee>) employeeRepository.findAll();
+        List<Employee> currentAgreemnts = employeeService.getEmployeeList();
         Resources resources = new Resources<>(currentAgreemnts);
         resources.add(ControllerLinkBuilder.linkTo(ControllerLinkBuilder.methodOn(EmployeeController.class).getAllEmployees()).withSelfRel());
 

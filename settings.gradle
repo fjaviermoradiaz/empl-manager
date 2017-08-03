@@ -1,4 +1,5 @@
 rootProject.name = 'employee-management'
 include 'employee-persistence'
 include 'employee-service'
+include 'employee-controller'
 

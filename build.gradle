@@ -3,12 +3,9 @@ buildscript{
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.6.RELEASE")
     }
 }
-
-//mainClassName = "com.enterprise.management.Application"
-
 
 repositories {
     mavenCentral()
@@ -20,14 +17,18 @@ allprojects {
     version '1.0.0-SNAPSHOT'
 
     apply plugin: 'java'
+    apply plugin: 'idea'
     apply plugin: 'org.springframework.boot'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
+    repositories {
+        mavenCentral()
+    }
 
     dependencies {
-        compile group: 'org.springframework', name: 'spring-context', version: '3.0.2.RELEASE'
+        compile group: 'org.springframework', name: 'spring-context', version: '4.3.9.RELEASE'
     }
 }
 
@@ -43,8 +44,16 @@ project(':employee-persistence') {
 project(':employee-service') {
     dependencies {
         compile project(':employee-persistence')
-        //compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    }
+}
 
+project(':employee-controller') {
+    dependencies {
+        //compile project(':employee-persistence')
+        compile project(':employee-service')
+        compile("io.springfox:springfox-swagger2:2.0.2")
+        compile("io.springfox:springfox-swagger-ui:2.0.2")
+        compile("org.springframework.boot:spring-boot-starter-web")
     }
 }
 
