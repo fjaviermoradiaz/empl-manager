@@ -1,6 +1,5 @@
 package com.enterprise.management.controller;
 
-import com.enterprise.management.entity.Employee;
 import com.enterprise.management.repository.EmployeeRepository;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -12,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

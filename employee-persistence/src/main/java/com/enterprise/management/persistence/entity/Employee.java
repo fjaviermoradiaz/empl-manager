@@ -1,4 +1,5 @@
-package com.enterprise.management.entity;
+package com.enterprise.management.persistence.entity;
+
 
 import javax.persistence.*;
 

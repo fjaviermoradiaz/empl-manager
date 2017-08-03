@@ -1,6 +1,6 @@
-package com.enterprise.management.repository;
+package com.enterprise.management.persistence.repository;
 
-import com.enterprise.management.entity.Employee;
+import com.enterprise.management.persistence.entity.Employee;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

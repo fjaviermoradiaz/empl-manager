@@ -1,0 +1,11 @@
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'employee-persistence',
+                    'Implementation-Version': version
+    }
+}
