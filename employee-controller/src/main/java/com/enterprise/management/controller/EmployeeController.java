@@ -13,6 +13,8 @@ import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by Javi on 26/6/17.
  */
@@ -32,15 +34,19 @@ public class EmployeeController extends BaseController {
         employee = employeeService.saveEmployee(employee);
         Resource resource = new Resource<>(employee);
         resource.add(ControllerLinkBuilder.linkTo(ControllerLinkBuilder.methodOn(EmployeeController.class)
-                .saveEmployee(employee)).withSelfRel());
+                .getEmployeeDetail(employee.getId())).withSelfRel());
         return ResponseEntity.ok(resource);
     }
 
     @CrossOrigin(origins = clientUrl)
     @RequestMapping(method = RequestMethod.GET, path="/employee/all", produces = applicationJson)
     public @ResponseBody
-    ResponseEntity<?> getAllEmployees(@RequestParam("page") int page, @RequestParam("size") int size) {
-        Page<Employee> employeeListPaged = employeeService.getEmployeeList(page,size);
+    ResponseEntity<?> getAllEmployees(
+            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+            @RequestParam(value = "size",required = false, defaultValue = "100") Integer size) {
+
+        Page<Employee> employeeListPaged = null;
+        employeeListPaged = employeeService.getEmployeeList(page,size);
 
         Resources resources = new Resources<>(employeeListPaged);
 
@@ -56,13 +62,9 @@ public class EmployeeController extends BaseController {
     @CrossOrigin(origins = clientUrl)
     @RequestMapping(method = RequestMethod.GET, path="/employee/detail", produces = applicationJson)
     public @ResponseBody
-    ResponseEntity<?> getEmployeeDetail(@RequestParam("id") Integer employeeId) {
+    ResponseEntity<?> getEmployeeDetail(@RequestParam("id") Long employeeId) {
         Employee employee = employeeService.findEmployeeById(employeeId);
-
         Resource resource = new Resource<>(employee);
-        resource.add(ControllerLinkBuilder.linkTo(ControllerLinkBuilder.methodOn(EmployeeController.class)
-                .getEmployeeDetail(employeeId)).withSelfRel());
-
         return ResponseEntity.ok(resource);
 
     }

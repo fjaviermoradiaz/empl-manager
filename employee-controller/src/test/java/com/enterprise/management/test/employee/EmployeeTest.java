@@ -17,12 +17,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class EmployeeTest {
 
-    @Autowired
-    private EmployeeService employeeService;
+   // @Autowired
+   // private EmployeeService employeeService;
 
     @Test
     public void createEmployees() throws Exception {
-        Employee employee = null;
+        /*Employee employee = null;
 
         int i = 10;
         for (i = 10;i<20000;i++) {
@@ -39,7 +39,7 @@ public class EmployeeTest {
 
             employeeService.saveEmployee(employee);
             System.out.println("Employee: " + i + " created.");
-        }
+        }*/
 
         Assert.assertEquals(null,null);
 

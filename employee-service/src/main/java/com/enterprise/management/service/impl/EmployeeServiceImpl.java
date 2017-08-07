@@ -36,8 +36,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findEmployeeById(Integer id) {
-        return employeeRepository.findOne(Long.parseLong(id.toString()));
+    public Employee findEmployeeById(Long id) {
+        return employeeRepository.findOne(id);
     }
 
 

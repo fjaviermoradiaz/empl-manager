@@ -13,5 +13,5 @@ public interface EmployeeService {
 
     Employee saveEmployee(Employee employee);
 
-    Employee findEmployeeById(Integer id);
+    Employee findEmployeeById(Long id);
 }
