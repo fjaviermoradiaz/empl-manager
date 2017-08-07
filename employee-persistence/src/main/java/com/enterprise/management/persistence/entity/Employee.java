@@ -14,16 +14,15 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
-    //private String surname1;
-    //private String surname2;
+    private String surname1;
+    private String surname2;
     private String email;
+    private String documentNumber;
+    private String documentType;
+    private String phone;
+    private String mobil;
 
     public Employee(){
-    }
-
-    public Employee(String name, String email) {
-        this.name = name;
-        this.email = email;
     }
 
     public Integer getId() {
@@ -48,5 +47,53 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSurname1() {
+        return surname1;
+    }
+
+    public void setSurname1(String surname1) {
+        this.surname1 = surname1;
+    }
+
+    public String getSurname2() {
+        return surname2;
+    }
+
+    public void setSurname2(String surname2) {
+        this.surname2 = surname2;
+    }
+
+    public String getDocumentNumber() {
+        return documentNumber;
+    }
+
+    public void setDocumentNumber(String documentNumber) {
+        this.documentNumber = documentNumber;
+    }
+
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getMobil() {
+        return mobil;
+    }
+
+    public void setMobil(String mobil) {
+        this.mobil = mobil;
     }
 }
