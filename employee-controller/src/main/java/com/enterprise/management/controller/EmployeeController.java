@@ -4,14 +4,14 @@ import com.enterprise.management.annotation.RestBaseController;
 import com.enterprise.management.persistence.entity.Employee;
 import com.enterprise.management.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Created by Javi on 26/6/17.
@@ -43,9 +43,12 @@ public class EmployeeController extends BaseController {
         Page<Employee> employeeListPaged = employeeService.getEmployeeList(page,size);
 
         Resources resources = new Resources<>(employeeListPaged);
+
         for(Employee employee : employeeListPaged) {
-            resources.add(ControllerLinkBuilder.linkTo(ControllerLinkBuilder.methodOn(EmployeeController.class)
-                    .getEmployeeDetail(employee.getId())).withSelfRel());
+            Link detail = ControllerLinkBuilder.linkTo(ControllerLinkBuilder.methodOn(EmployeeController.class)
+                    .getEmployeeDetail(employee.getId())).withSelfRel();
+            employee.setLink(detail);
+
         }
         return ResponseEntity.ok(resources);
     }

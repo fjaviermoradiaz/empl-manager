@@ -1,6 +1,8 @@
 package com.enterprise.management.persistence.entity;
 
 
+import org.springframework.hateoas.Link;
+
 import javax.persistence.*;
 
 /**
@@ -21,6 +23,9 @@ public class Employee {
     private String documentType;
     private String phone;
     private String mobil;
+
+    @Transient
+    private Link _link;
 
     public Employee(){
     }
@@ -95,5 +100,13 @@ public class Employee {
 
     public void setMobil(String mobil) {
         this.mobil = mobil;
+    }
+
+    public Link getLink() {
+        return _link;
+    }
+
+    public void setLink(Link _link) {
+        this._link = _link;
     }
 }
