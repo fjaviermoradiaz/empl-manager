@@ -1,7 +1,9 @@
 package com.enterprise.management.controller;
 
+import com.enterprise.management.annotation.RestBaseController;
 import com.enterprise.management.persistence.entity.Employee;
 import com.enterprise.management.service.EmployeeService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +19,13 @@ import java.util.List;
 /**
  * Created by Javi on 26/6/17.
  */
-@Controller
-@RequestMapping(path="/employee")
+@RestBaseController(value = "/employee", description = "Operations about employee")
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
-    //TODO: Pendiente de implementar HATEOAS y usar Swagger para las pruebas
-    //TODO: Cambiar GetMapping por RequestMapping
-    @RequestMapping(method = RequestMethod.POST, path="/add", produces = "application/json")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success", response = Employee.class),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
-            @ApiResponse(code = 404, message = "Not Found"),
-            @ApiResponse(code = 500, message = "Failure")})
+    @RequestMapping(method = RequestMethod.POST, path="/employee/add", produces = "application/json")
     public @ResponseBody
         ResponseEntity<?> addEmployee (@RequestParam String name, @RequestParam String email) {
 
@@ -44,13 +37,7 @@ public class EmployeeController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping(method = RequestMethod.GET, path="/all", produces = "application/json")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success", response = Employee.class),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
-            @ApiResponse(code = 404, message = "Not Found"),
-            @ApiResponse(code = 500, message = "Failure")})
+    @RequestMapping(method = RequestMethod.GET, path="/employee/all", produces = "application/json")
     public @ResponseBody
     ResponseEntity<?> getAllEmployees() {
         List<Employee> currentAgreemnts = employeeService.getEmployeeList();
